@@ -872,3 +872,16 @@ function DR_importCollection() {
 }
 
 window.DR_init = function() { DR_loadCollection(); DR_buildRarityButtons(); DR_buildLegend(); DR_render(); };
+
+let DR_hideRH = false;
+
+function DR_toggleNoRH() {
+  DR_hideRH = !DR_hideRH;
+  const btn = document.getElementById('dr-btn-norh');
+  if (DR_hideRH) {
+    btn.classList.add('active');
+  } else {
+    btn.classList.remove('active');
+  }
+  DR_render();
+}

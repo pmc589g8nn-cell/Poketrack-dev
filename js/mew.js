@@ -547,3 +547,16 @@ function MEW_importCollection() {
 }
 
 window.MEW_init = function() { MEW_loadCollection(); MEW_buildRarityButtons(); MEW_buildLegend(); MEW_render(); };
+
+let MEW_hideRH = false;
+
+function MEW_toggleNoRH() {
+  MEW_hideRH = !MEW_hideRH;
+  const btn = document.getElementById('mew-btn-norh');
+  if (MEW_hideRH) {
+    btn.classList.add('active');
+  } else {
+    btn.classList.remove('active');
+  }
+  MEW_render();
+}

@@ -1,0 +1,54 @@
+#mew-screen * { box-sizing: border-box; margin: 0; padding: 0; }
+#mew-screen { background: #f0fafa; color: #000; font-family: 'Courier New', monospace; padding-bottom: 60px; }
+#mew-screen #mew-header { background: #f0fafa; border-bottom: 2px solid #cc000033; padding: 20px 16px 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px #00000011; }
+#mew-screen #mew-header-inner { max-width: 900px; margin: 0 auto; }
+#mew-screen #mew-header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+#mew-screen .set-label { font-size: 10px; letter-spacing: 4px; color: #249EA9; margin-bottom: 4px; text-transform: uppercase; }
+#mew-screen .set-title { font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #000; }
+#mew-screen .set-sub { font-size: 11px; color: #000; margin-top: 4px; }
+#mew-screen .pct { font-size: 32px; font-weight: 900; color: #249EA9; line-height: 1; text-align: right; }
+#mew-screen .pct-sub { font-size: 12px; color: #000; text-align: right; }
+#mew-screen #mew-progress-bar { margin-top: 14px; background: #d0eaec; border-radius: 4px; height: 6px; overflow: hidden; }
+#mew-screen #mew-progress-fill { height: 100%; background: linear-gradient(90deg,#249EA9,#2ec4d0); border-radius: 4px; transition: width 0.3s; }
+#mew-screen #mew-controls { max-width: 900px; margin: 0 auto; padding: 14px 12px 0; }
+#mew-screen #mew-search-row { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+#mew-screen #mew-search { flex: 1; min-width: 140px; background: #f0fafa; border: 1px solid #249EA933; border-radius: 6px; padding: 8px 12px; color: #000; font-size: 13px; font-family: inherit; outline: none; }
+#mew-screen .filter-btn { background: transparent; border: 1px solid #249EA933; border-radius: 6px; padding: 8px 14px; color: #000; font-size: 12px; cursor: pointer; font-family: inherit; text-transform: capitalize; }
+#mew-screen .filter-btn.active { background: #249EA911; border-color: #249EA9; color: #249EA9; }
+#mew-screen #mew-rarity-row { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+#mew-screen .rarity-btn { background: transparent; border: 1px solid #249EA933; border-radius: 6px; padding: 5px 12px; color: #000; font-size: 11px; cursor: pointer; font-family: inherit; }
+#mew-screen .rarity-btn.active { color: var(--rc); border-color: var(--rc); background: var(--rb); }
+#mew-screen #mew-card-count { font-size: 11px; color: #000; margin-bottom: 10px; }
+#mew-screen #mew-card-list { max-width: 900px; margin: 0 auto; padding: 0; display: flex; flex-direction: column; gap: 0; border-top: 1px solid #d0eaec; }
+#mew-screen .card-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 6px; border-left: 3px solid #e0e0e0; background: #f0fafa; border-top: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; transition: all 0.15s; box-shadow: 0 1px 3px #00000008; }
+#mew-screen .card-row.complete { background: #f0fafa; border-top-color: #00000015; border-right-color: #00000015; border-bottom-color: #00000015; }
+#mew-screen .card-num { width: 34px; color: #000; font-size: 11px; flex-shrink: 0; text-align: right; }
+#mew-screen .card-name { flex: 1; font-size: 13px; color: #000; cursor: pointer; text-decoration: underline; text-decoration-color: #00000044; text-underline-offset: 3px; }
+#mew-screen .card-row.complete .card-name { color: #000; }
+#mew-screen .rarity-badge { border-radius: 4px; padding: 2px 7px; font-size: 10px; flex-shrink: 0; letter-spacing: 0.5px; }
+#mew-screen .card-btns { display: flex; gap: 6px; flex-shrink: 0; }
+#mew-screen .chk-btn { width: 28px; height: 28px; border-radius: 4px; border: 2px solid #ddd; background: transparent; cursor: pointer; font-size: 14px; color: #ddd; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; font-family: inherit; }
+#mew-screen .chk-btn.checked { color: #fff; }
+#mew-screen .rh-btn { width: 28px; height: 28px; border-radius: 4px; border: 2px solid #ddd; background: transparent; cursor: pointer; font-size: 10px; color: #ddd; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; font-family: inherit; }
+#mew-screen .rh-btn.checked { background: #249EA9; border-color: #249EA9; color: #fff; }
+#mew-screen .recent-time { font-size: 10px; color: #000; flex-shrink: 0; }
+#mew-screen #mew-legend { max-width: 900px; margin: 20px auto 0; padding: 0 12px; }
+#mew-screen #mew-legend-inner { background: #f0fafa; border: 1px solid #00000010; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px #00000008; }
+#mew-screen .legend-label { font-size: 10px; color: #000; margin-bottom: 8px; letter-spacing: 2px; text-transform: uppercase; }
+#mew-screen .legend-items { display: flex; flex-wrap: wrap; gap: 8px; }
+#mew-screen .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #000; }
+#mew-screen .legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+#mew-screen #mew-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+#mew-screen #mew-modal-overlay.open { display: flex; }
+#mew-screen #mew-modal { background: #f0fafa; border: 1px solid #249EA933; border-radius: 12px; padding: 20px; max-width: 380px; width: 100%; text-align: center; font-family: 'Courier New', monospace; box-shadow: 0 20px 60px #00000033; position: relative; }
+#mew-screen #mew-modal-num { font-size: 10px; color: #249EA9; letter-spacing: 3px; margin-bottom: 4px; text-transform: uppercase; }
+#mew-screen #mew-modal-name { font-size: 15px; font-weight: 700; color: #000; margin-bottom: 16px; }
+#mew-screen #mew-modal-img { width: 100%; border-radius: 8px; box-shadow: 0 8px 40px #00000022; display: none; }
+#mew-screen #mew-modal-loading { color: #000; font-size: 13px; padding: 40px 0; }
+#mew-screen #mew-modal-error { color: #000; font-size: 13px; padding: 40px 0; display: none; }
+#mew-screen #mew-modal-close { margin-top: 16px; background: transparent; border: 1px solid #249EA966; border-radius: 6px; color: #249EA9; padding: 8px 24px; cursor: pointer; font-size: 12px; font-family: inherit; letter-spacing: 1px; }
+#mew-screen #mew-modal-checks { position: absolute; top: 14px; right: 14px; display: flex; gap: 6px; }
+#mew-screen .modal-chk { width: 30px; height: 30px; border-radius: 5px; border: 2px solid #ddd; background: transparent; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; font-family: inherit; }
+#mew-screen .modal-chk.checked { color: #fff; }
+#mew-screen .modal-chk-label { font-size: 9px; text-align: center; color: #aaa; margin-top: 2px; }
+#mew-screen .modal-chk-wrap { display: flex; flex-direction: column; align-items: center; }

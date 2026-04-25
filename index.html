@@ -54,7 +54,15 @@
       <button class="filter-btn" id="dr-btn-recent" onclick="DR_setShow('recent')">recent</button>
 
     </div>
-    <div id="dr-rarity-row"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div id="dr-rarity-row" style="flex:1;"></div>
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:11px;color:#888;font-family:'Courier New',monospace;flex-shrink:0;">
+        <span>hide RH</span>
+        <div onclick="DR_toggleNoRH()" id="dr-rh-slider" style="width:36px;height:20px;background:#333;border-radius:10px;position:relative;transition:background 0.2s;cursor:pointer;">
+          <div id="dr-rh-knob" style="width:16px;height:16px;background:#666;border-radius:50%;position:absolute;top:2px;left:2px;transition:all 0.2s;"></div>
+        </div>
+      </label>
+    </div>
     <div id="dr-card-count"></div>
   </div>
   <div id="dr-card-list"></div>

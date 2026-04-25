@@ -52,7 +52,7 @@
       <button class="filter-btn" id="dr-btn-collected" onclick="DR_setShow('collected')">collected</button>
       <button class="filter-btn" id="dr-btn-missing" onclick="DR_setShow('missing')">missing</button>
       <button class="filter-btn" id="dr-btn-recent" onclick="DR_setShow('recent')">recent</button>
-      <button class="filter-btn" id="dr-btn-norh" onclick="DR_toggleNoRH()">hide RH</button>
+
     </div>
     <div id="dr-rarity-row"></div>
     <div id="dr-card-count"></div>
@@ -108,9 +108,17 @@
       <button class="filter-btn" id="mew-btn-collected" onclick="MEW_setShow('collected')">collected</button>
       <button class="filter-btn" id="mew-btn-missing" onclick="MEW_setShow('missing')">missing</button>
       <button class="filter-btn" id="mew-btn-recent" onclick="MEW_setShow('recent')">recent</button>
-      <button class="filter-btn" id="mew-btn-norh" onclick="MEW_toggleNoRH()">hide RH</button>
+
     </div>
-    <div id="mew-rarity-row"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div id="mew-rarity-row" style="flex:1;"></div>
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:11px;color:#000;font-family:'Courier New',monospace;flex-shrink:0;">
+        <span>hide RH</span>
+        <div onclick="MEW_toggleNoRH()" id="mew-rh-slider" style="width:36px;height:20px;background:#d0eaec;border-radius:10px;position:relative;transition:background 0.2s;cursor:pointer;">
+          <div id="mew-rh-knob" style="width:16px;height:16px;background:#aaa;border-radius:50%;position:absolute;top:2px;left:2px;transition:all 0.2s;"></div>
+        </div>
+      </label>
+    </div>
     <div id="mew-card-count"></div>
   </div>
   <div id="mew-card-list"></div>

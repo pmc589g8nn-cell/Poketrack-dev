@@ -348,6 +348,7 @@ function MEW_getFilteredCards() {
     if (search && !c.name.toLowerCase().includes(search)) return false;
     if (MEW_showFilter === 'collected') return MEW_isComplete(c);
     if (MEW_showFilter === 'missing') return !MEW_isCollected(c,'normal') || (c.hasReverseHolo && !MEW_isCollected(c,'rh'));
+    if (MEW_hideRH && c.hasReverseHolo) return false;
     return true;
   });
 }
@@ -552,11 +553,16 @@ let MEW_hideRH = false;
 
 function MEW_toggleNoRH() {
   MEW_hideRH = !MEW_hideRH;
-  const btn = document.getElementById('mew-btn-norh');
+  const slider = document.getElementById('mew-rh-slider');
+  const knob = document.getElementById('mew-rh-knob');
   if (MEW_hideRH) {
-    btn.classList.add('active');
+    slider.style.background = '#249EA9';
+    knob.style.background = '#fff';
+    knob.style.left = '18px';
   } else {
-    btn.classList.remove('active');
+    slider.style.background = '#d0eaec';
+    knob.style.background = '#aaa';
+    knob.style.left = '2px';
   }
   MEW_render();
 }

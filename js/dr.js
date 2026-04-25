@@ -688,6 +688,7 @@ function DR_getFilteredCards() {
     if (search && !c.name.toLowerCase().includes(search)) return false;
     if (DR_showFilter === 'collected') return DR_isComplete(c);
     if (DR_showFilter === 'missing') return !DR_isCollected(c,'normal') || (c.hasReverseHolo && !DR_isCollected(c,'rh'));
+    if (DR_hideRH && c.hasReverseHolo) return false;
     return true;
   });
 }
@@ -877,11 +878,16 @@ let DR_hideRH = false;
 
 function DR_toggleNoRH() {
   DR_hideRH = !DR_hideRH;
-  const btn = document.getElementById('dr-btn-norh');
+  const slider = document.getElementById('dr-rh-slider');
+  const knob = document.getElementById('dr-rh-knob');
   if (DR_hideRH) {
-    btn.classList.add('active');
+    slider.style.background = '#cc3333';
+    knob.style.background = '#fff';
+    knob.style.left = '18px';
   } else {
-    btn.classList.remove('active');
+    slider.style.background = '#333';
+    knob.style.background = '#666';
+    knob.style.left = '2px';
   }
   DR_render();
 }

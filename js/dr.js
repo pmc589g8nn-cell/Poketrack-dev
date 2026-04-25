@@ -688,7 +688,6 @@ function DR_getFilteredCards() {
     if (search && !c.name.toLowerCase().includes(search)) return false;
     if (DR_showFilter === 'collected') return DR_isComplete(c);
     if (DR_showFilter === 'missing') return !DR_isCollected(c,'normal') || (c.hasReverseHolo && !DR_isCollected(c,'rh'));
-    if (DR_hideRH && c.hasReverseHolo) return false;
     return true;
   });
 }
@@ -717,7 +716,7 @@ function DR_render() {
         <button class="chk-btn ${nc?'checked':''}"
           style="background:${nc?cfg.color:'transparent'};border-color:${nc?cfg.color:'#444'};color:${nc?'#000':'#444'}"
           onclick="DR_toggle('${card.num}-normal')">${nc?'✓':''}</button>
-        ${card.hasReverseHolo ? `<button class="rh-btn ${rc?'checked':''}" onclick="DR_toggle('${card.num}-rh')">${rc?'✓':'RH'}</button>` : ''}
+        ${card.hasReverseHolo && !DR_hideRH ? `<button class="rh-btn ${rc?'checked':''}" onclick="DR_toggle('${card.num}-rh')">${rc?'✓':'RH'}</button>` : ''}
       </div>
     `;
     list.appendChild(row);

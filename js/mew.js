@@ -347,7 +347,7 @@ function MEW_getFilteredCards() {
     if (MEW_rarityFilter !== 'all' && c.rarity !== MEW_rarityFilter) return false;
     if (search && !c.name.toLowerCase().includes(search)) return false;
     if (MEW_showFilter === 'collected') return MEW_isComplete(c);
-    if (MEW_showFilter === 'missing') return !MEW_isCollected(c,'normal') || (c.hasReverseHolo && !MEW_isCollected(c,'rh'));
+    if (MEW_showFilter === 'missing') return !MEW_isCollected(c,'normal') || (!MEW_hideRH && c.hasReverseHolo && !MEW_isCollected(c,'rh'));
     return true;
   });
 }

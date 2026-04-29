@@ -678,8 +678,6 @@ function DR_setRarity(r) {
     const btn = document.getElementById('dr-rbtn-' + k);
     if (btn) btn.className = 'rarity-btn' + (DR_rarityFilter.has(k) ? ' active' : '');
   });
-  document.querySelectorAll('#dr-screen .rarity-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('dr-rbtn-' + r).classList.add('active');
   DR_render();
 }
 

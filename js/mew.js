@@ -341,8 +341,6 @@ function MEW_setRarity(r) {
     const btn = document.getElementById('mew-rbtn-' + k);
     if (btn) btn.className = 'rarity-btn' + (MEW_rarityFilter.has(k) ? ' active' : '');
   });
-  document.querySelectorAll('#mew-screen .rarity-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('mew-rbtn-' + r).classList.add('active');
   MEW_render();
 }
 

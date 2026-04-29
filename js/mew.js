@@ -228,7 +228,7 @@ const MEW_RARITY_KEYS = Object.keys(MEW_RARITY_CONFIG);
 let MEW_collected = {};
 let MEW_recentLog = [];
 let MEW_showFilter = 'all';
-let MEW_rarityFilter = 'all';
+let MEW_rarityFilter = new Set();
 
 function MEW_loadCollection() {
   try {
@@ -328,7 +328,19 @@ function MEW_setShow(f) {
 }
 
 function MEW_setRarity(r) {
-  MEW_rarityFilter = r;
+  if (r === 'all') {
+    MEW_rarityFilter.clear();
+  } else if (MEW_rarityFilter.has(r)) {
+    MEW_rarityFilter.delete(r);
+  } else {
+    MEW_rarityFilter.add(r);
+  }
+  // update button states
+  document.getElementById('mew-rbtn-all').className = 'rarity-btn' + (MEW_rarityFilter.size === 0 ? ' active' : '');
+  MEW_RARITY_KEYS.forEach(k => {
+    const btn = document.getElementById('mew-rbtn-' + k);
+    if (btn) btn.className = 'rarity-btn' + (MEW_rarityFilter.has(k) ? ' active' : '');
+  });
   document.querySelectorAll('#mew-screen .rarity-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('mew-rbtn-' + r).classList.add('active');
   MEW_render();
@@ -344,7 +356,7 @@ function MEW_getFilteredCards() {
   }
   const search = document.getElementById('mew-search').value.toLowerCase();
   return MEW_CARD_DATA.filter(c => {
-    if (MEW_rarityFilter !== 'all' && c.rarity !== MEW_rarityFilter) return false;
+    if (MEW_rarityFilter.size > 0 && !MEW_rarityFilter.has(c.rarity)) return false;
     if (search && !c.name.toLowerCase().includes(search)) return false;
     if (MEW_showFilter === 'collected') return MEW_isComplete(c);
     if (MEW_showFilter === 'missing') return !MEW_isCollected(c,'normal') || (!MEW_hideRH && c.hasReverseHolo && !MEW_isCollected(c,'rh'));
@@ -495,6 +507,11 @@ function MEW_buildRarityButtons() {
     btn.onclick = () => MEW_setRarity(r);
     row.appendChild(btn);
   });
+  const resetBtn = document.createElement('button');
+  resetBtn.className = 'rarity-btn';
+  resetBtn.textContent = 'Reset';
+  resetBtn.onclick = () => MEW_setRarity('all');
+  row.appendChild(resetBtn);
 }
 
 function MEW_buildLegend() {

@@ -565,7 +565,7 @@ const DR_RARITY_KEYS = Object.keys(DR_RARITY_CONFIG);
 let DR_collected = {};
 let DR_recentLog = []; // [{ key, ts }] most recent first
 let DR_showFilter = 'all';
-let DR_rarityFilter = 'all';
+let DR_rarityFilter = new Set();
 
 function DR_loadCollection() {
   try {
@@ -665,7 +665,19 @@ function DR_setShow(f) {
 }
 
 function DR_setRarity(r) {
-  DR_rarityFilter = r;
+  if (r === 'all') {
+    DR_rarityFilter.clear();
+  } else if (DR_rarityFilter.has(r)) {
+    DR_rarityFilter.delete(r);
+  } else {
+    DR_rarityFilter.add(r);
+  }
+  // update button states
+  document.getElementById('dr-rbtn-all').className = 'rarity-btn' + (DR_rarityFilter.size === 0 ? ' active' : '');
+  DR_RARITY_KEYS.forEach(k => {
+    const btn = document.getElementById('dr-rbtn-' + k);
+    if (btn) btn.className = 'rarity-btn' + (DR_rarityFilter.has(k) ? ' active' : '');
+  });
   document.querySelectorAll('#dr-screen .rarity-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('dr-rbtn-' + r).classList.add('active');
   DR_render();
@@ -684,7 +696,7 @@ function DR_getFilteredCards() {
   }
   const search = document.getElementById('dr-search').value.toLowerCase();
   return DR_CARD_DATA.filter(c => {
-    if (DR_rarityFilter !== 'all' && c.rarity !== DR_rarityFilter) return false;
+    if (DR_rarityFilter.size > 0 && !DR_rarityFilter.has(c.rarity)) return false;
     if (search && !c.name.toLowerCase().includes(search)) return false;
     if (DR_showFilter === 'collected') return DR_isComplete(c);
     if (DR_showFilter === 'missing') return !DR_isCollected(c,'normal') || (!DR_hideRH && c.hasReverseHolo && !DR_isCollected(c,'rh'));
@@ -820,6 +832,11 @@ function DR_buildRarityButtons() {
     btn.onclick = () => DR_setRarity(r);
     row.appendChild(btn);
   });
+  const resetBtn = document.createElement('button');
+  resetBtn.className = 'rarity-btn';
+  resetBtn.textContent = 'Reset';
+  resetBtn.onclick = () => DR_setRarity('all');
+  row.appendChild(resetBtn);
 }
 
 function DR_buildLegend() {
